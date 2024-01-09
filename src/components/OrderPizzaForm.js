@@ -34,7 +34,7 @@ const OrderPizzaForm = () => {
     };
 
     return (
-        <div>
+        <div className="container">
             <h2>Build Your Own Pizza</h2>
             <form>
 
