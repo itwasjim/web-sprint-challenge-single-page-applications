@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import './OrderPizzaForm.css'; // import CSS file
 
 const OrderPizzaForm = () => {
+    const [customerName, setCustomerName] = useState('')
     const [selectedToppings, setSelectedToppings] = useState([]);
     const [selectedCrust, setSelectedCrust] = useState([]);
     const [selectedSize, setSelectedSize] = useState([]);
     const [selectedSauce, setSelectedSauce] = useState([]);
     const [selectedCheese, setSelectedCheese] = useState([]);
+
+    const handleNameChange = (event) => {
+        setCustomerName(event.target.value);
+    }
 
     const handleToppingChange = (topping) => {
         const isSelected = selectedToppings.includes(topping);
@@ -36,7 +41,16 @@ const OrderPizzaForm = () => {
     return (
         <div className="container">
             <h2>Build Your Own Pizza</h2>
-            <form>
+            <form id="pizza-form">
+                <label htmlFor="name-input">
+                    Name:
+                    <input
+                        type="text"
+                        id="name-input"
+                        value={customerName}
+                        onChange={handleNameChange}
+                    />
+                </label>
 
                 {/* Size Options */}
                 <div>

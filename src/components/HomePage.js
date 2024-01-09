@@ -5,10 +5,10 @@ const HomePage = () => {
     return (
         <div>
             <h1>Lambda Eats</h1>
-            <Link to="/order-pizza" id="order-pizza">
-                Order Here
+            <Link to="/pizza" id="order-pizza-link">
+                <button id="order-pizza">Order Here</button>
             </Link>
-            </div>
+        </div>
     );
 };
 

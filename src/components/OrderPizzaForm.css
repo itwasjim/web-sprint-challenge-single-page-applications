@@ -1,5 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
+    font-size: large;
     background-image: url('../../Assets/Pizza.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,6 +8,15 @@ body {
     background-position: center;
     margin: 20px;
     padding: 20px ;
+}
+
+#pizza-form label[for="name-input"] {
+    font-weight: bold;
+    font-size: large;
+}
+
+#name-input {
+    margin-left: 10px;
 }
 
 .container {
