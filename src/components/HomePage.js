@@ -6,7 +6,7 @@ const HomePage = () => {
         <div>
             <h1>Lambda Eats</h1>
             <Link to="/order-pizza" id="order-pizza">
-                Order Pizza
+                Order Here
             </Link>
             </div>
     );
