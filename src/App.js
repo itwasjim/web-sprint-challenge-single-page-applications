@@ -7,8 +7,8 @@ const App = () => {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/order-pizza" component={OrderPizzaForm} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/order-pizza" element={<OrderPizzaForm />} />
       </Routes>
     </div>
   );
