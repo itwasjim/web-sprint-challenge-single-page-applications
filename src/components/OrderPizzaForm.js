@@ -96,9 +96,10 @@ const OrderPizzaForm = () => {
                         id="name-input"
                         value={customerName}
                         onChange={handleNameChange}
+                        className={nameError ? 'error' : ''} // Apply 'error' class if there's an error
                     />
                 </label>
-                {nameError && <p className="error-message">{nameError}</p>}
+                {nameError && <p id="error-message">{nameError}</p>}
 
                 {/* Size Dropdown */}
                 <label htmlFor="size-dropdown" className="size-label">

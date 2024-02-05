@@ -113,8 +113,14 @@ h5 {
     border-radius: 20px;
 }
 
-.error-message {
+#error-message {
     color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.error {
+    border: 1px solid red;
 }
 
 .size-label {
