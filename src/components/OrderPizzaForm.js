@@ -60,7 +60,7 @@ const OrderPizzaForm = () => {
 
         // Validate name before placing order
         if (customerName.length < 2) {
-            setNameError('Name must be at least 2 characters');
+            setNameError('name must be at least 2 characters');
             return;
         }
 
@@ -101,7 +101,7 @@ const OrderPizzaForm = () => {
 
                 {nameError ? (
                     <p className="error-message" htmlFor="name-input">
-                        {`Name must be at least 2 characters`}
+                        {`name must be at least 2 characters`}
                     </p>
                 ) : null}
 
