@@ -1,9 +1,3 @@
-describe('template spec', () => {
-  it('passes', () => {
-    cy.visit('https://example.cypress.io')
-  })
-});
-
 describe('Order Pizza Form', () => {
   it('should allow adding text to the special instructions box', () => {
       cy.visit('/pizza');

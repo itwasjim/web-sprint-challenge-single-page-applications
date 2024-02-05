@@ -75,7 +75,7 @@ const OrderPizzaForm = () => {
             special: specialInstructions,
         };
 
-        console.log('Order Data:', orderData);
+        /* console.log('Order Data:', orderData); */
     
         navigate('/thank-you');
     };
