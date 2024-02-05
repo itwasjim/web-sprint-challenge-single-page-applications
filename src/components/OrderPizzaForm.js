@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './OrderPizzaForm.css'; // import CSS file
 
 const OrderPizzaForm = () => {
@@ -9,6 +9,7 @@ const OrderPizzaForm = () => {
     const [selectedSize, setSelectedSize] = useState([]);
     const [selectedSauce, setSelectedSauce] = useState([]);
     const [selectedCheese, setSelectedCheese] = useState([]);
+    const navigate = useNavigate(); 
 
     const handleNameChange = (event) => {
         setCustomerName(event.target.value);
@@ -39,8 +40,18 @@ const OrderPizzaForm = () => {
         setSelectedCheese(cheese);
     };
 
+    const handlePlaceOrder = () => {
+        //Redirect to order confirmation after placing order
+        navigate('/thank-you');
+    };
+
     return (
         <div className="container">
+
+            <Link to="/" id="back-button">
+                Back to Homepage
+            </Link>
+
             <h2>Build Your Own Pizza</h2>
             <form id="pizza-form">
                 <label htmlFor="name-input">
@@ -256,11 +267,9 @@ const OrderPizzaForm = () => {
                     </label>
             </form>
 
-            <button type="submit">Place Order</button>
-
-            <Link to="/" id="back-button">
-            Back to Homepage
-            </Link>
+            <button type="button" id="order-button" onClick={handlePlaceOrder}>
+                Place Order
+            </button>
 
         </div>
     );

@@ -22,6 +22,24 @@ body {
     margin-left: 10px;
 }
 
+#back-button {
+    display: inline-block;
+    margin: 0px auto 30px;
+    padding: 10px 15px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#back-button:hover {
+    background-color:red ;
+}
+
 .container {
     max-width: 600px;
     margin: 0px;
@@ -32,9 +50,11 @@ body {
 }
 
 h1 {
+    margin-left: 0px;
     color: white;
     background-color: black;
     text-align: center;
+    font-size: 60px;
     padding: 10px 15px;
     border-radius: 10px;
 }
@@ -68,19 +88,30 @@ input[type="checkbox"] {
 }
 
 button {
+    display: inline-block;
+    margin: 0 auto;
     background-color: black;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 50px;
     font-size: 16px;
     font-weight: bold;
 }
 
 button:hover {
     background-color: red;
+}
+
+h5 {
+    font-size: 100px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 20px;
 }
 
 @media (max-width: 768px) {
