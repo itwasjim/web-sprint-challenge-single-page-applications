@@ -92,14 +92,18 @@ const OrderPizzaForm = () => {
                 <label htmlFor="name-input">
                     Name:
                     <input
-                        type="text"
                         id="name-input"
+                        type="text"
                         value={customerName}
                         onChange={handleNameChange}
-                        className={nameError ? 'error' : ''} // Apply 'error' class if there's an error
                     />
                 </label>
-                {nameError && <p id="error-message">{nameError}</p>}
+
+                {nameError && (
+                    <p className="error-message" htmlFor="name-input">
+                        Name must be at least 2 characters
+                    </p>
+                )}
 
                 {/* Size Dropdown */}
                 <label htmlFor="size-dropdown" className="size-label">
