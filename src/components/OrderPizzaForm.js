@@ -6,10 +6,10 @@ const OrderPizzaForm = () => {
     const [customerName, setCustomerName] = useState('');
     const [nameError, setNameError] = useState('');
     const [selectedToppings, setSelectedToppings] = useState([]);
-    const [selectedCrust, setSelectedCrust] = useState([]);
-    const [selectedSize, setSelectedSize] = useState([]);
-    const [selectedSauce, setSelectedSauce] = useState([]);
-    const [selectedCheese, setSelectedCheese] = useState([]);
+    const [selectedCrust, setSelectedCrust] = useState('');
+    const [selectedSize, setSelectedSize] = useState('');
+    const [selectedSauce, setSelectedSauce] = useState('');
+    const [selectedCheese, setSelectedCheese] = useState('');
     const [specialInstructions, setSpecialInstructions] = useState('');
 
     const navigate = useNavigate(); 
@@ -51,18 +51,33 @@ const OrderPizzaForm = () => {
         setSelectedCheese(cheese);
     };
 
-    const handlePlaceOrder = () => {
+    const handleSpecialInstructionsChange = (event) => {
+        setSpecialInstructions(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+
         // Validate name before placing order
         if (customerName.length < 2) {
             setNameError('Name must be at least 2 characters');
             return;
         }
 
-        navigate('/thank-you')
-    };
+        // Construct the order data
+        const orderData = {
+            name: customerName,
+            size: selectedSize,
+            toppings: selectedToppings,
+            crust: selectedCrust,
+            sauce: selectedSauce,
+            cheese: selectedCheese,
+            special: specialInstructions,
+        };
 
-    const handleSpecialInstructionsChange = (event) => {
-        setSpecialInstructions(event.target.value);
+        console.log('Order Data:', orderData);
+    
+        navigate('/thank-you');
     };
 
     return (
@@ -73,7 +88,7 @@ const OrderPizzaForm = () => {
             </Link>
 
             <h2>Build Your Own Pizza</h2>
-            <form id="pizza-form">
+            <form id="pizza-form" onSubmit={handleSubmit}>
                 <label htmlFor="name-input">
                     Name:
                     <input
@@ -92,11 +107,6 @@ const OrderPizzaForm = () => {
                         id="size-dropdown"
                         value={selectedSize}
                         onChange={handleSizeChange}
-                        style={{
-                            padding: '3px',
-                            borderRadius: '3px',
-                            fontSize: '16px',
-                        }}
                     >
                         <option value='small'>Small</option>
                         <option value='medium'>Medium</option>
@@ -284,11 +294,12 @@ const OrderPizzaForm = () => {
                             onChange={handleSpecialInstructionsChange}
                         />
                     </label>
-            </form>
 
-            <button type="button" id="order-button" onClick={handlePlaceOrder}>
-                Place Order
-            </button>
+                {/* Order Button */}
+                <button type="submit" id="order-button">
+                    Place Order
+                </button>
+            </form>
         </div>
     );
 };
