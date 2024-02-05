@@ -10,6 +10,7 @@ const OrderPizzaForm = () => {
     const [selectedSize, setSelectedSize] = useState([]);
     const [selectedSauce, setSelectedSauce] = useState([]);
     const [selectedCheese, setSelectedCheese] = useState([]);
+    const [specialInstructions, setSpecialInstructions] = useState('');
 
     const navigate = useNavigate(); 
 
@@ -58,6 +59,10 @@ const OrderPizzaForm = () => {
         }
 
         navigate('/thank-you')
+    };
+
+    const handleSpecialInstructionsChange = (event) => {
+        setSpecialInstructions(event.target.value);
     };
 
     return (
@@ -267,6 +272,17 @@ const OrderPizzaForm = () => {
                             onChange={() => handleCheeseChange('extra')}
                         />
                         Extra
+                    </label>
+
+                    {/* Special Instructions */}
+                    <label htmlFor="special-text">
+                        Special Instructions:
+                        <input
+                            type="text"
+                            id="special-text"
+                            value={specialInstructions}
+                            onChange={handleSpecialInstructionsChange}
+                        />
                     </label>
             </form>
 
