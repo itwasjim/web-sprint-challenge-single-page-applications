@@ -3,17 +3,27 @@ import { Link, useNavigate } from 'react-router-dom';
 import './OrderPizzaForm.css'; // import CSS file
 
 const OrderPizzaForm = () => {
-    const [customerName, setCustomerName] = useState('')
+    const [customerName, setCustomerName] = useState('');
+    const [nameError, setNameError] = useState('');
     const [selectedToppings, setSelectedToppings] = useState([]);
     const [selectedCrust, setSelectedCrust] = useState([]);
     const [selectedSize, setSelectedSize] = useState([]);
     const [selectedSauce, setSelectedSauce] = useState([]);
     const [selectedCheese, setSelectedCheese] = useState([]);
+
     const navigate = useNavigate(); 
 
     const handleNameChange = (event) => {
-        setCustomerName(event.target.value);
-    }
+        const newName = event.target.value;
+        setCustomerName(newName);
+
+        // Validate name (at least 2 characters)
+        if (newName.length < 2) {
+            setNameError('Name must be at least 2 characters');
+        } else {
+            setNameError('');
+        }
+    };
 
     const handleToppingChange = (topping) => {
         const isSelected = selectedToppings.includes(topping);
@@ -28,8 +38,8 @@ const OrderPizzaForm = () => {
         setSelectedCrust(crust);
     };
 
-    const handleSizeChange = (size) => {
-        setSelectedSize(size);
+    const handleSizeChange = (event) => {
+        setSelectedSize(event.target.value);
       };
 
     const handleSauceChange = (sauce) => {
@@ -41,8 +51,13 @@ const OrderPizzaForm = () => {
     };
 
     const handlePlaceOrder = () => {
-        //Redirect to order confirmation after placing order
-        navigate('/thank-you');
+        // Validate name before placing order
+        if (customerName.length < 2) {
+            setNameError('Name must be at least 2 characters');
+            return;
+        }
+
+        navigate('/thank-you')
     };
 
     return (
@@ -63,38 +78,26 @@ const OrderPizzaForm = () => {
                         onChange={handleNameChange}
                     />
                 </label>
+                {nameError && <p className="error-message">{nameError}</p>}
 
-                {/* Size Options */}
-                <div>
-                    <h3>Size</h3>
-                </div>
-                    <label>
-                        <input
-                            type="radio"
-                            value="small"
-                            checked={selectedSize === ('small')}
-                            onChange={() => handleSizeChange('small')}
-                        />
-                        Small
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            value="medium"
-                            checked={selectedSize === ('medium')}
-                            onChange={() => handleSizeChange('medium')}
-                        />
-                        Medium
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            value="large"
-                            checked={selectedSize === ('large')}
-                            onChange={() => handleSizeChange('large')}
-                        />
-                        Large
-                    </label>
+                {/* Size Dropdown */}
+                <label htmlFor="size-dropdown" className="size-label">
+                    Size:
+                    <select
+                        id="size-dropdown"
+                        value={selectedSize}
+                        onChange={handleSizeChange}
+                        style={{
+                            padding: '3px',
+                            borderRadius: '3px',
+                            fontSize: '16px',
+                        }}
+                    >
+                        <option value='small'>Small</option>
+                        <option value='medium'>Medium</option>
+                        <option value='large'>Large</option>
+                    </select>
+                </label>
 
                 {/* Crust Options */}
                 <div>
@@ -270,7 +273,6 @@ const OrderPizzaForm = () => {
             <button type="button" id="order-button" onClick={handlePlaceOrder}>
                 Place Order
             </button>
-
         </div>
     );
 };
