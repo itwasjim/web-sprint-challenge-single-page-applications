@@ -99,11 +99,11 @@ const OrderPizzaForm = () => {
                     />
                 </label>
 
-                {nameError && (
+                {nameError ? (
                     <p className="error-message" htmlFor="name-input">
-                        Name must be at least 2 characters
+                        {`Name must be at least 2 characters`}
                     </p>
-                )}
+                ) : null}
 
                 {/* Size Dropdown */}
                 <label htmlFor="size-dropdown" className="size-label">
